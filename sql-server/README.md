@@ -22,13 +22,13 @@ MSSQL_PID=<edition_name> (default: Developer)
 ## 1. Spinning up a clean container with no existing data
 
 ```bash
-docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=<password>" -e "MSSQL_PID=Developer" -p <port>:1433 boshoffwillem/sql-server:latest
+docker container run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=<password>" -e "MSSQL_PID=Developer" -p <port>:1433 boshoffwillem/sql-server:latest
 ```
 
 You'll probably want to persist the SQL data of the container in case the container crashes. Just start the container and bind the data to a volume (docker will create the volume if it doesn't exist).
 
 ```bash
-docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=<password>" -e "MSSQL_PID=Developer" -p <port>:1433 -v <volume-name>:/var/opt/mssql boshoffwillem/sql-server:latest
+docker container run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=<password>" -e "MSSQL_PID=Developer" -p <port>:1433 -v <volume-name>:/var/opt/mssql boshoffwillem/sql-server:latest
 ```
 
 ## 2. If you have existing SQL data
@@ -42,7 +42,7 @@ At the least, you need the .bak file of each DB you want to import into the cont
 ### 2.2 Create the container
 
 ```bash
-docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=<password>" -e "MSSQL_PID=Developer" -p <port>:1433 -v <volume-name>:/var/opt/mssql boshoffwillem/sql-server:latest
+docker container run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=<password>" -e "MSSQL_PID=Developer" -p <port>:1433 -v <volume-name>:/var/opt/mssql boshoffwillem/sql-server:latest
 ```
 
 ### 2.3 Copy backup files into container
